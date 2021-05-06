@@ -7,14 +7,28 @@ const composer = new Composer();
 
 composer.command("start", async (ctx) => {
   await ctx.reply(
-    "You can use me submit your Telegram project " +
-      "to the TG Translators team " +
-      "in order to make your project multilingual.\n" +
-      "Use /new to make a new translation request."
+    `👋 <i>Hello!</i>
+<b>You can use me submit your Telegram project to the</b> 
+<i><a href='https://t.me/TGTranslators'>TG Translators</a></i> team in order to make your project multilingual.
+👨‍💻 Type /new or use the button below <b>to make a new translation request.</b>`,
+    {
+      parse_mode: "HTML",
+      reply_markup: {
+        inline_keyboard: [
+          [{ text: "📚 New translation", callback_data: "new" }],
+        ],
+      },
+    }
   );
 });
 
 composer.command("new", async (ctx) => {
+  await ctx.reply("Send me a link to your project.", {
+    reply_markup: { force_reply: true },
+  });
+});
+
+composer.callbackQuery("new", async (ctx) => {
   await ctx.reply("Send me a link to your project.", {
     reply_markup: { force_reply: true },
   });
