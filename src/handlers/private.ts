@@ -8,8 +8,8 @@ const composer = new Composer();
 composer.command("start", async (ctx) => {
   await ctx.reply(
     `👋 <i>Hello!</i>
-<b>You can use me submit your Telegram project to the</b> 
-<i><a href='https://t.me/TGTranslators'>TG Translators</a></i> team in order to make your project multilingual.
+<b>You can use me submit your Telegram project to the</b> <i><a href='https://t.me/TGTranslators'>TG Translators</a></i> team in order to make your project multilingual.
+
 👨‍💻 Type /new or use the button below <b>to make a new translation request.</b>`,
     {
       parse_mode: "HTML",
