@@ -9,15 +9,16 @@ composer.command("start", async (ctx) => {
   await ctx.reply(
     `👋 <i>Hello!</i>
 
-<b>You can use me submit your Telegram project to the</b> <i><a href='https://t.me/TGTranslators'>TG Translators</a></i> team in order to make your project multilingual.
+<b>You can use me submit your Telegram bot to the</b> <i><a href='https://t.me/TGTranslators'>TG Translators</a></i> team in order to make your it multilingual.
 
-👨‍💻 Type /new or use the button below <b>to make a new translation request.</b>`,
+👨‍💻 Use /new the button below to <b>make a new translation request</b>.`,
     {
       parse_mode: "HTML",
       disable_web_page_preview: true,
       reply_markup: {
         inline_keyboard: [
-          [{ text: "📚 New translation", callback_data: "new" }],
+          [{ text: "📚 New request", callback_data: "new" }],
+          [{ text: "ℹ️ About this bot", callback_data: "about" }],
         ],
       },
     }
@@ -25,14 +26,14 @@ composer.command("start", async (ctx) => {
 });
 
 composer.command("new", async (ctx) => {
-  await ctx.reply("Send me a link to your project.", {
+  await ctx.reply("Send me your bot username.", {
     reply_markup: { force_reply: true },
   });
 });
 
 composer.callbackQuery("new", async (ctx) => {
   await ctx.answerCallbackQuery();
-  await ctx.reply("Send me a link to your project.", {
+  await ctx.reply("Send me your bot username.", {
     reply_markup: { force_reply: true },
   });
 });
@@ -40,7 +41,7 @@ composer.callbackQuery("new", async (ctx) => {
 composer.filter(
   (ctx) =>
     (ctx.message?.reply_to_message?.text?.endsWith(
-      "Send me a link to your project."
+      "Send me your bot username."
     ) &&
       ctx.message?.reply_to_message?.from?.id == ctx.me.id) ||
     false,
@@ -50,15 +51,15 @@ composer.filter(
 
     if (
       entities?.length === 1 &&
-      entities[0].type === "url" &&
+      entities[0].type === "mention" &&
       entities[0].offset === 0 &&
       text
     ) {
-      const url = text.slice(0, entities[0].length).toLowerCase();
+      const url = `t.me/{text.slice(1, entities[0].length).toLowerCase()}`;
       await ctx.reply(
         `<a href="${url}">\xad</a>` +
           "Send me the code of the languages " +
-          "that you like your project to be available in. " +
+          "that you like your bot to be available in. " +
           "For a list of available languages see /languages.",
         {
           parse_mode: "HTML",
@@ -67,7 +68,7 @@ composer.filter(
         }
       );
     } else {
-      await ctx.reply("Send me a link to your project.", {
+      await ctx.reply("Send me your bot username.", {
         reply_markup: { force_reply: true },
       });
     }
@@ -111,9 +112,9 @@ composer.filter(
 
       try {
         await submitRequest(ctx, url, languages);
-        await ctx.reply("Your request was submitted successfully.");
+        await ctx.reply("✅ Your request was submitted successfully.");
       } catch (error) {
-        await ctx.reply(error.toString());
+        await ctx.reply(error.message);
       }
     }
   }

@@ -15,15 +15,15 @@ var bans: mongodb.Collection;
   bans = client.db("tgtranslators").collection("bans");
 })();
 
-export const isRequested = async (project: string): Promise<boolean> => {
-  if (await requests.findOne({ project: project })) return true;
+export const isRequested = async (bot: string): Promise<boolean> => {
+  if (await requests.findOne({ bot: bot })) return true;
   return false;
 };
 
-export const request = async (project: string): Promise<void> => {
-  if (await isRequested(project))
-    throw new Error("This project is already requested.");
-  await requests.insertOne({ project: project });
+export const request = async (bot: string): Promise<void> => {
+  if (await isRequested(bot))
+    throw new Error("❌ This bot is already requested.");
+  await requests.insertOne({ bot: bot });
 };
 
 export const isBanned = async (user_id: number): Promise<boolean> => {
