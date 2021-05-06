@@ -37,21 +37,19 @@ composer.callbackQuery("new", async (ctx) => {
 
 composer.filter(
   (ctx) => {
-    const text = ctx.message?.reply_to_message?.text;
+    const message = ctx.message?.reply_to_message;
+    const text = message?.text;
 
-    if (text && ctx.from?.id == ctx.me.id) {
+    if (text && message?.from?.id == ctx.me.id) {
       if (
-        text.endsWith("Send me your bot username.") ||
-        text.endsWith(
-          "This is not a right username, please make sure you include @."
-        )
+        text.endsWith("Send your bot username.") ||
+        text.endsWith("This is not a valid username, make sure you include @.")
       )
         return true;
     }
 
     return false;
   },
-
   async (ctx) => {
     const text = ctx.message?.text;
     const entities = ctx.message?.entities;
@@ -76,7 +74,7 @@ composer.filter(
       );
     } else {
       await ctx.reply(
-        "This is not a right username, make sure you include @.",
+        "This is not a valid username, make sure you include @.",
         {
           reply_markup: { force_reply: true },
         }
