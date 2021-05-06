@@ -36,12 +36,22 @@ composer.callbackQuery("new", async (ctx) => {
 });
 
 composer.filter(
-  (ctx) =>
-    (ctx.message?.reply_to_message?.text?.endsWith(
-      "Send me your bot username."
-    ) &&
-      ctx.message?.reply_to_message?.from?.id == ctx.me.id) ||
-    false,
+  (ctx) => {
+    const text = ctx.message?.reply_to_message?.text;
+
+    if (text && ctx.from?.id == ctx.me.id) {
+      if (
+        text.endsWith("Send me your bot username.") ||
+        text.endsWith(
+          "This is not a right username, please make sure you include @."
+        )
+      )
+        return true;
+    }
+
+    return false;
+  },
+
   async (ctx) => {
     const text = ctx.message?.text;
     const entities = ctx.message?.entities;
@@ -65,9 +75,12 @@ composer.filter(
         }
       );
     } else {
-      await ctx.reply("Send me your bot username.", {
-        reply_markup: { force_reply: true },
-      });
+      await ctx.reply(
+        "This is not a right username, make sure you include @.",
+        {
+          reply_markup: { force_reply: true },
+        }
+      );
     }
   }
 );
