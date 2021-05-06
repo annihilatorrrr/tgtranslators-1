@@ -31,6 +31,7 @@ composer.command("new", async (ctx) => {
 });
 
 composer.callbackQuery("new", async (ctx) => {
+  await ctx.answerCallbackQuery();
   await ctx.reply("Send me a link to your project.", {
     reply_markup: { force_reply: true },
   });
