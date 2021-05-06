@@ -23,7 +23,7 @@ composer.command("start", async (ctx) => {
 });
 
 composer.command("new", async (ctx) => {
-  await ctx.reply("Send me your bot username.", {
+  await ctx.reply("Send your bot username.", {
     reply_markup: { force_reply: true },
   });
 });
