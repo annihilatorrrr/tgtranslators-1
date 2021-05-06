@@ -17,8 +17,6 @@ export const submitRequest = async (
       `</a>\nBot: ${bot}\n` +
       `<b>Languages:</b> ${languages.join(", ")}`,
     {
-      parse_mode: "HTML",
-      disable_web_page_preview: true,
       reply_markup: {
         inline_keyboard: [
           [
