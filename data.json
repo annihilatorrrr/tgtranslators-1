@@ -1,0 +1,54 @@
+{
+  "languages": {
+    "en": {
+      "name": "English",
+      "native_name": "English",
+      "emoji": "🇬🇧️"
+    },
+    "it": {
+      "name": "Italian",
+      "native_name": "Italiano",
+      "emoji": "🇮🇹️"
+    },
+    "es": {
+      "name": "Spanish",
+      "native_name": "Español",
+      "emoji": "🇪🇸"
+    },
+    "zh": {
+      "name": "Simplified Chinese",
+      "native_name": "中文",
+      "emoji": "🇧🇷️"
+    },
+    "fr": {
+      "name": "French",
+      "native_name": "Français",
+      "emoji": "🇫🇷"
+    },
+    "he": {
+      "name": "Hebrew",
+      "native_name": "עברית",
+      "emoji": "🇮🇱"
+    },
+    "jp": {
+      "name": "Japanese",
+      "native_name": "日本語",
+      "emoji": "🇯🇵"
+    },
+    "ckb": {
+      "name": "Central Kurdish",
+      "native_name": "کوردی",
+      "emoji": "🇮🇶"
+    },
+    "hi": {
+      "name": "Hindi",
+      "native_name": "हिदी",
+      "emoji": "🇮🇳"
+    },
+    "id": {
+      "name": "Indonesian",
+      "native_name": "Indonesia",
+      "emoji": "🇮🇩"
+    }
+  }
+}
