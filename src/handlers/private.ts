@@ -13,8 +13,6 @@ composer.command("start", async (ctx) => {
 
 👨‍💻 Use /new the button below to <b>make a new translation request</b>.`,
     {
-      parse_mode: "HTML",
-      disable_web_page_preview: true,
       reply_markup: {
         inline_keyboard: [[{ text: "📚 New request", callback_data: "new" }]],
       },
@@ -67,8 +65,6 @@ composer.filter(
           "that you like your bot to be available in. " +
           "For a list of available languages see /languages.",
         {
-          parse_mode: "HTML",
-          disable_web_page_preview: true,
           reply_markup: { force_reply: true },
         }
       );
@@ -109,8 +105,6 @@ composer.filter(
               `The language ${language} is not available now. ` +
               "For a list of available languages see /languages.",
             {
-              parse_mode: "HTML",
-              disable_web_page_preview: true,
               reply_markup: { force_reply: true },
             }
           );
