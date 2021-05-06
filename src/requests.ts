@@ -14,7 +14,7 @@ export const submitRequest = async (
     `<b>Translation Request #u_${ctx.from?.id}</b>\n\n` +
       `<b>From:</b> <a href="tg://user?id=${ctx.from?.id}">` +
       escapeHtml(ctx.from?.first_name) +
-      `</a>\n🤖 Bot: ${bot}\n` +
+      `</a>\nBot: ${bot}\n` +
       `<b>Languages:</b> ${languages.join(", ")}`,
     {
       parse_mode: "HTML",

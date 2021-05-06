@@ -11,6 +11,7 @@ composer.callbackQuery("decline", async (ctx) => {
   await ctx.editMessageText(
     text + `\n\n❌ Declined by ${ctx.from.first_name}.`,
     {
+      disable_web_page_preview: true,
       entities: entitites,
     }
   );
@@ -31,6 +32,7 @@ composer.callbackQuery("approve", async (ctx) => {
   await ctx.editMessageText(
     text + `\n\n✅ Approved by ${ctx.from.first_name}.`,
     {
+      disable_web_page_preview: true,
       entities: entitites,
     }
   );
