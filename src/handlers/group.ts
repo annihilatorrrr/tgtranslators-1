@@ -8,18 +8,19 @@ composer.callbackQuery("decline", async (ctx) => {
   const entitites = ctx.callbackQuery.message?.entities;
   const from = text?.split("\n")[0].split("_")[1];
   const bot = text?.split("\n")[3].split(": ")[1];
-
-  if (from) {
-    await ctx.api.sendMessage(from, `ℹ️ ${bot} was declined.`);
-  }
-
   await ctx.editMessageText(
-    text?.replace("🆕", "") + `\n\n❌ Declined by ${ctx.from.first_name}.`,
+    text + `\n\n❌ Declined by ${ctx.from.first_name}.`,
     {
       entities: entitites,
     }
   );
   await ctx.answerCallbackQuery({ text: "Declined" });
+
+  if (from) {
+    await ctx.api.sendMessage(from, `ℹ️ ${bot} was declined.`, {
+      disable_web_page_preview: true,
+    });
+  }
 });
 
 composer.callbackQuery("approve", async (ctx) => {
@@ -27,21 +28,23 @@ composer.callbackQuery("approve", async (ctx) => {
   const entitites = ctx.callbackQuery.message?.entities;
   const from = text?.split("\n")[0].split("_")[1];
   const bot = text?.split("\n")[3].split(": ")[1];
-
-  if (from) {
-    await ctx.api.sendMessage(
-      from,
-      `ℹ️ ${bot} was approved. Our team may send you a message.`
-    );
-  }
-
   await ctx.editMessageText(
-    text?.replace("🆕", "") + `\n\n✅ Approved by ${ctx.from.first_name}.`,
+    text + `\n\n✅ Approved by ${ctx.from.first_name}.`,
     {
       entities: entitites,
     }
   );
   await ctx.answerCallbackQuery({ text: "Approved" });
+
+  if (from) {
+    await ctx.api.sendMessage(
+      from,
+      `ℹ️ ${bot} was approved. Our team will talk to you soon.`,
+      {
+        disable_web_page_preview: true,
+      }
+    );
+  }
 });
 
 composer.command("ban", async (ctx) => {

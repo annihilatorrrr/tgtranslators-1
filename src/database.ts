@@ -32,11 +32,13 @@ export const isBanned = async (user_id: number): Promise<boolean> => {
 };
 
 export const ban = async (user_id: number): Promise<void> => {
-  if (await isBanned(user_id)) throw new Error("This user is already banned.");
+  if (await isBanned(user_id))
+    throw new Error("❌ This user is already banned.");
   await bans.insertOne({ user_id: user_id });
 };
 
 export const unban = async (user_id: number): Promise<void> => {
-  if (!(await isBanned(user_id))) throw new Error("This user is not banned.");
+  if (!(await isBanned(user_id)))
+    throw new Error("❌ This user is not banned.");
   await bans.deleteOne({ user_id: user_id });
 };
