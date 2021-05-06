@@ -13,6 +13,7 @@ composer.command("start", async (ctx) => {
 👨‍💻 Type /new or use the button below <b>to make a new translation request.</b>`,
     {
       parse_mode: "HTML",
+      disable_web_page_preview: true,
       reply_markup: {
         inline_keyboard: [
           [{ text: "📚 New translation", callback_data: "new" }],
