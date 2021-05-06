@@ -30,7 +30,7 @@ composer.command("new", async (ctx) => {
 
 composer.callbackQuery("new", async (ctx) => {
   await ctx.answerCallbackQuery();
-  await ctx.reply("Send me your bot username.", {
+  await ctx.reply("Send your bot username.", {
     reply_markup: { force_reply: true },
   });
 });
