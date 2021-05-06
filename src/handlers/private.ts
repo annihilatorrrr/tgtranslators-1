@@ -16,10 +16,7 @@ composer.command("start", async (ctx) => {
       parse_mode: "HTML",
       disable_web_page_preview: true,
       reply_markup: {
-        inline_keyboard: [
-          [{ text: "📚 New request", callback_data: "new" }],
-          [{ text: "ℹ️ About this bot", callback_data: "about" }],
-        ],
+        inline_keyboard: [[{ text: "📚 New request", callback_data: "new" }]],
       },
     }
   );
@@ -55,7 +52,7 @@ composer.filter(
       entities[0].offset === 0 &&
       text
     ) {
-      const url = `t.me/{text.slice(1, entities[0].length).toLowerCase()}`;
+      const url = `t.me/${text.slice(1, entities[0].length).toLowerCase()}`;
       await ctx.reply(
         `<a href="${url}">\xad</a>` +
           "Send me the code of the languages " +
