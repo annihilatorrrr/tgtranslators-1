@@ -11,11 +11,11 @@ export const submitRequest = async (
   await request(bot);
   await ctx.api.sendMessage(
     adminsChatId,
-    `<b>Translation Request #u_${ctx.from?.id}</b>\n\n` +
-      `<b>From:</b> <a href="tg://user?id=${ctx.from?.id}">` +
+    `<b>🆕 Translation Request #u_${ctx.from?.id}</b>\n\n` +
+      `<b>👤 From:</b> <a href="tg://user?id=${ctx.from?.id}">` +
       escapeHtml(ctx.from?.first_name) +
-      `</a>\nBot: ${bot}\n` +
-      `<b>Languages:</b> ${languages.join(", ")}`,
+      `</a>\n🤖 Bot: ${bot}\n` +
+      `<b>🏷 Languages:</b> ${languages.join(", ")}`,
     {
       reply_markup: {
         inline_keyboard: [
