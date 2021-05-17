@@ -14,4 +14,5 @@ bot.api.config.use((prev, method, payload) =>
 );
 
 bot.catch((error) => console.log(error.error));
+
 bot.start({ drop_pending_updates: true });

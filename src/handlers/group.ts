@@ -9,18 +9,15 @@ composer.callbackQuery("decline", async (ctx) => {
   const from = text?.split("\n")[0].split("_")[1];
   const bot = text?.split("\n")[3].split(": ")[1];
   await ctx.editMessageText(
-    text + `\n\n❌ Declined by ${ctx.from.first_name}.`,
+    text + `\n\n<b>❌ Declined by ${ctx.from.first_name}.</b>`,
     {
-      disable_web_page_preview: true,
       entities: entitites,
     }
   );
   await ctx.answerCallbackQuery({ text: "Declined" });
 
   if (from) {
-    await ctx.api.sendMessage(from, `ℹ️ ${bot} was declined.`, {
-      disable_web_page_preview: true,
-    });
+    await ctx.api.sendMessage(from, `ℹ️ ${bot} was declined.`);
   }
 });
 
@@ -30,9 +27,8 @@ composer.callbackQuery("approve", async (ctx) => {
   const from = text?.split("\n")[0].split("_")[1];
   const bot = text?.split("\n")[3].split(": ")[1];
   await ctx.editMessageText(
-    text + `\n\n✅ Approved by ${ctx.from.first_name}.`,
+    text + `\n\n<b>✅ Approved by ${ctx.from.first_name}.</b>`,
     {
-      disable_web_page_preview: true,
       entities: entitites,
     }
   );
@@ -41,10 +37,7 @@ composer.callbackQuery("approve", async (ctx) => {
   if (from) {
     await ctx.api.sendMessage(
       from,
-      `ℹ️ ${bot} was approved. Our team will talk to you soon.`,
-      {
-        disable_web_page_preview: true,
-      }
+      `ℹ️ ${bot} was approved. Our team will talk to you soon.`
     );
   }
 });

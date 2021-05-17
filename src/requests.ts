@@ -9,7 +9,7 @@ export const submitRequest = async (
   languages: Array<string>
 ): Promise<boolean> => {
   await request(bot);
-  await ctx.api.sendMessage(
+  const message = await ctx.api.sendMessage(
     adminsChatId,
     `<b>🆕 Translation Request #u_${ctx.from?.id}</b>\n\n` +
       `<b>👤 From:</b> <a href="tg://user?id=${ctx.from?.id}">` +
@@ -27,5 +27,6 @@ export const submitRequest = async (
       },
     }
   );
+  await ctx.api.pinChatMessage(message.chat.id, message.message_id);
   return true;
 };
