@@ -1,4 +1,5 @@
-import { Bot, Context } from "grammy";
+import { Bot } from "grammy";
+import { run } from "@grammyjs/runner";
 import { addHandlers } from "./handlers";
 import { botToken } from "./constants";
 
@@ -15,4 +16,4 @@ bot.api.config.use((prev, method, payload) =>
 
 bot.catch((error) => console.log(error.error));
 
-bot.start({ drop_pending_updates: true });
+run(bot);

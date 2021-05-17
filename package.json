@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/rojserbest/tgtranslators#readme",
   "dependencies": {
+    "@grammyjs/runner": "^1.0.2",
     "dotenv": "^9.0.0",
     "escape-html": "^1.0.3",
     "grammy": "^1.0.1",
