@@ -25,6 +25,11 @@
       "native_name": "Français",
       "emoji": "🇫🇷"
     },
+    "nl": {
+      "name": "Dutch",
+      "native_name": "Nederlands",
+      "emoji": "🇳🇱"
+    },
     "he": {
       "name": "Hebrew",
       "native_name": "עברית",
