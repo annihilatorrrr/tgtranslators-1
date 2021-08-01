@@ -11,7 +11,7 @@ composer.command("start", async (ctx) => {
 
 <b>You can use me submit your Telegram bot to the</b> <i><a href='https://t.me/TGTranslators'>TG Translators</a></i> team in order to make your it multilingual.
 
-👨‍💻 Use /new the button below to <b>make a new translation request</b>.`,
+👨‍💻 Use /new or the button below to <b>make a new translation request</b>.`,
     {
       reply_markup: {
         inline_keyboard: [[{ text: "📚 New request", callback_data: "new" }]],
