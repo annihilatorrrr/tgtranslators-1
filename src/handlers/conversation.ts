@@ -12,11 +12,12 @@ const getFrom = (message: Message | undefined) =>
 composer.filter(
   async (ctx) => {
     const isFromRightGroup = ctx.chat?.id == env.ADMINS_CHAT_ID;
-    const isFromBot = ctx.message?.from?.id == ctx.me.id;
+    const isFromBot = ctx.message?.reply_to_message?.from?.id == ctx.me.id;
     const hasFrom = getFrom(ctx.message?.reply_to_message);
-    const notSuppressed =
-      !ctx.message?.text?.startsWith("!") ||
-      !ctx.message?.caption?.startsWith("!");
+    const notSuppressed = !(
+      ctx.message?.text?.startsWith("!") ||
+      ctx.message?.caption?.startsWith("!")
+    );
 
     return Boolean(isFromRightGroup && isFromBot && hasFrom && notSuppressed);
   },
