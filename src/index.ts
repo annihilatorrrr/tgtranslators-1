@@ -1,4 +1,7 @@
 import bot from "./bot";
 import database from "./database";
 
-Promise.all([bot, database]);
+(async () => {
+  await database();
+  await bot();
+})();
