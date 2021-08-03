@@ -15,8 +15,8 @@ composer.filter(
     const isFromBot = ctx.message?.from?.id == ctx.me.id;
     const hasFrom = getFrom(ctx.message?.reply_to_message);
     const notSuppressed =
-      ctx.message?.text?.startsWith("!") ||
-      ctx.message?.caption?.startsWith("!");
+      !ctx.message?.text?.startsWith("!") ||
+      !ctx.message?.caption?.startsWith("!");
 
     return Boolean(isFromRightGroup && isFromBot && hasFrom && notSuppressed);
   },
