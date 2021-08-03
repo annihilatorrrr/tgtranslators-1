@@ -1,33 +1,12 @@
 import { Composer } from "grammy";
 import { submitRequest } from "../requests";
-import { getLangauges, languageAvailable } from "../languages";
-import { adminsChatId } from "../constants";
+import { getLangauges, languageIsAvailable } from "../languages";
 
 const composer = new Composer();
 
-composer.command("start", async (ctx) => {
-  await ctx.reply(
-    `👋 <i>Hello!</i>
-
-<b>You can use me submit your Telegram bot to the</b> <i><a href='https://t.me/TGTranslators'>TG Translators</a></i> team in order to make your it multilingual.
-
-👨‍💻 Use /new or the button below to <b>make a new translation request</b>.`,
-    {
-      reply_markup: {
-        inline_keyboard: [[{ text: "📚 New request", callback_data: "new" }]],
-      },
-    }
-  );
-});
+export default composer;
 
 composer.command("new", async (ctx) => {
-  await ctx.reply("Send your bot username.", {
-    reply_markup: { force_reply: true },
-  });
-});
-
-composer.callbackQuery("new", async (ctx) => {
-  await ctx.answerCallbackQuery();
   await ctx.reply("Send your bot username.", {
     reply_markup: { force_reply: true },
   });
@@ -79,7 +58,7 @@ composer.filter(
   }
 );
 
-composer.command("languages", async (ctx) => await ctx.reply(getLangauges()));
+composer.command("languages", (ctx) => ctx.reply(getLangauges()));
 
 composer.filter(
   (ctx) =>
@@ -99,7 +78,7 @@ composer.filter(
       for (let language in languages) {
         language = languages[language];
 
-        if (!languageAvailable(language)) {
+        if (!languageIsAvailable(language)) {
           await ctx.reply(
             `<a href="${url}">\xad</a>` +
               `The language ${language} is not available now. ` +
@@ -121,19 +100,3 @@ composer.filter(
     }
   }
 );
-composer.filter(
-  (ctx) =>
-    (ctx.message?.reply_to_message?.text?.endsWith(
-      "Reply this message to send them a message."
-    ) &&
-      ctx.message?.reply_to_message?.from?.id == ctx.me.id) ||
-    false,
-  async (ctx) => {
-    const message = await ctx.forwardMessage(adminsChatId);
-    await ctx.api.sendMessage(adminsChatId, `#u_${ctx.from?.id}`, {
-      reply_to_message_id: message.message_id,
-    });
-  }
-);
-
-export default composer;

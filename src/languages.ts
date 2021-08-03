@@ -1,4 +1,4 @@
-import { data } from "./constants";
+import data from "./data";
 
 interface Languages {
   [key: string]: { name: string; native_name: string; emoji: string };
@@ -6,11 +6,11 @@ interface Languages {
 
 const languages: Languages = data.languages;
 
-export const languageAvailable = (languageCode: string): boolean => {
+export const languageIsAvailable = (languageCode: string) => {
   return languageCode in languages;
 };
 
-export const getLangauges = (): string => {
+export const getLangauges = () => {
   const toReturn = [];
 
   for (let language in languages)
